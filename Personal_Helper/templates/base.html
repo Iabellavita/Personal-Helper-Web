@@ -12,6 +12,7 @@
 
 {% include 'inc/_navbar.html' %}
 
+
 {% if user.is_authenticated %}
 <div class="container mt-3">
     <h1>🦾 Welcome, {{ user.username }}!</h1>
@@ -32,7 +33,11 @@
             <a href="#" class="list-group-item list-group-item-action">Notes</a>
             <a href="{% url 'uploadFile' %}" class="list-group-item list-group-item-action">File-Store</a>
             <a href="#" class="list-group-item list-group-item-action">News</a>
+
+                {% include 'inc/_notification.html' %}
         </div>
+
+
 
         <div class="col-md-9">
             {% block content %}
