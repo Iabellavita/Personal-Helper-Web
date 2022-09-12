@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+SignUP - {{ block.super }}
+{% endblock %}
+
+{% block start %}
+<h2>Registration</h2>
+{% if messages %}
+{% for message in messages %}
+{% if message.tag == error %}
+<div class="alert alert-danger" role="alert">
+    {{ message }}
+</div>
+{% else %}
+<div class="alert alert-{{ message.tags }}" role="alert">
+    {{ message }}
+</div>
+{% endif %}
+{% endfor %}
+{% endif %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-primary">Registration</button>
+</form>
+{% endblock %}

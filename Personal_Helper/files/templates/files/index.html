@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}
+File Upload - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="mb-3">
+        <input class="form-control" type="text" name="title" placeholder="Title file" required>
+    </div>
+
+    <div class="custom-file mb-3">
+        <input type="file" name="uploadfile" class="custom-file-input" id="validatedCustomFile" required>
+        <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+    </div>
+
+    <button class="btn btn-primary">Upload</button>
+</form>
+{% if files %}
+{% for file in files %}
+<div class="card mt-3 mb-3">
+    <div class="card-body">
+        <div class="media">
+            <div class="media-body">
+                <a class="nav-link" href="/media/{{ file.uploadfile }}" class="card-title">{{ file.title }}</a>
+            </div>
+            <a class="nav-link" href="{% url 'download_file' file.pk %}">Download</a>
+            <a class="nav-link" href="{% url 'delete_file' file.pk %}">Delete</a>
+        </div>
+    </div>
+    <div class="card-footer text-muted">
+        {{ file.created_at|date:"Y-m-d H:i" }}
+    </div>
+</div>
+{% endfor %}
+{% else %}
+<div class="container mt-3">
+    <div class="row">
+        <h2>You don't have any files.</h2>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
