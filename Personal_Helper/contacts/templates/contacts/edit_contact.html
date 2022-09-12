@@ -47,7 +47,6 @@
         <button type="submit" class="btn btn-primary btn-block mt-3"><i class="fa fa-folder"></i> SAVE</button>
         <input type="hidden" id="b-delete" name='b-delete' value="empty">
         <button type="submit" class="btn btn-danger btn-block mt-3" onclick="func()"><i class="fa fa-trash"></i> DELETE</button>
-
         </form>
     </div>
 
@@ -55,5 +54,6 @@
 function func() {
     document.getElementById('b-delete').value = 'delete';
 }
+
 </script>
 {% endblock %}
