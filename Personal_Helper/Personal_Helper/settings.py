@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
     'files.apps.FilesConfig',
+    'contacts.apps.ContactsConfig',
 ]
 
 MIDDLEWARE = [
