@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}
+File Upload - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+{% if messages %}
+{% for message in messages %}
+
+{% if message.tags == 'error'%}
+<div class="alert alert-danger" role="alert">{{message}}</div>
+{% else %}
+<div class="alert alert-{{ message.tags }}" role="alert">{{message}}</div>
+{% endif %}
+{% endfor %}
+{% endif %}
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="mb-3">
+        <label class="form-label">Title:</label>
+        <input class="form-control" type="text" name="title" required>
+    </div>
+
+    <div class="custom-file mb-3">
+        <input type="file" name="uploadfile" class="custom-file-input" id="validatedCustomFile" required>
+        <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+    </div>
+
+    <button class="btn btn-primary btn-block mt-3">Upload</button>
+</form>
+
+<script>
+function showPhone() {
+    document.getElementById('phone-1').style.display = 'grid';
+    document.getElementById('show-b-p').style.display = 'none';
+}
+function showEmail() {
+    document.getElementById('email-1').style.display = 'grid';
+    document.getElementById('show-b-e').style.display = 'none';
+}
+</script>
+{% endblock %}

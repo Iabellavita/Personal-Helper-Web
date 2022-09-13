@@ -4,9 +4,10 @@ from django.shortcuts import render, get_object_or_404, redirect, reverse
 # from django.views import generic
 from .forms import RegisterUserForm, LoginUserForm
 from django.contrib import messages
-from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-from django.core.mail import send_mail
+
+
+# from django.core.mail import send_mail
 
 
 def home(request):
@@ -35,7 +36,6 @@ def register(request):
         form = RegisterUserForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Success SignUp!')
             return redirect('login')
         else:
             messages.error(request, 'No valid input!')

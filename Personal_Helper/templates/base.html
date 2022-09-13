@@ -1,8 +1,11 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="{% static 'img/helper.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -15,28 +18,50 @@
 
 {% if user.is_authenticated %}
 <div class="container mt-3">
-    <h1>🦾 Welcome, {{ user.username }}!</h1>
+    <h1>👤 {{ user.username }}</h1>
     <div class="row">
         <div class="col-md-3">
 
             <div class="dropstart">
-                <button type="button" class="list-group-item list-group-item-action dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <button type="button" class="list-group-item list-group-item-action dropdown-toggle"
+                        data-bs-toggle="dropdown" aria-expanded="false">
                     Contacts
                 </button>
                 <ul class="dropdown-menu">
-                <li><a class="list-group-item list-group-item-action dropstart-menu" href="{% url 'contact_list' %}">Contact book</a></li>
-                <li><a class="list-group-item list-group-item-action dropstart-menu" href="{% url 'create_contact' %}">Create new contact</a></li>
+                    <li><a class="list-group-item list-group-item-action dropstart-menu"
+                           href="{% url 'contact_list' %}">Contact book</a></li>
+                    <li><a class="list-group-item list-group-item-action dropstart-menu"
+                           href="{% url 'create_contact' %}">Create new contact</a></li>
                 </ul>
             </div>
-
-
-            <a href="#" class="list-group-item list-group-item-action">Notes</a>
-            <a href="{% url 'uploadFile' %}" class="list-group-item list-group-item-action">File-Store</a>
+            <div class="dropstart">
+                <button type="button" class="list-group-item list-group-item-action dropdown-toggle"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                    Notes
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="list-group-item list-group-item-action dropstart-menu"
+                           href="#">Notes book</a></li>
+                    <li><a class="list-group-item list-group-item-action dropstart-menu"
+                           href="#">Create new note</a></li>
+                </ul>
+            </div>
+            <div class="dropstart">
+                <button type="button" class="list-group-item list-group-item-action dropdown-toggle"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                    Files storage
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="list-group-item list-group-item-action dropstart-menu"
+                           href="{% url 'files' %}">Files</a></li>
+                    <li><a class="list-group-item list-group-item-action dropstart-menu"
+                           href="{% url 'upload_file' %}">Add new file</a></li>
+                </ul>
+            </div>
             <a href="#" class="list-group-item list-group-item-action">News</a>
 
-                {% include 'inc/_notification.html' %}
+            {% include 'inc/_notification.html' %}
         </div>
-
 
 
         <div class="col-md-9">
