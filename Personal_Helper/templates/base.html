@@ -22,9 +22,10 @@
     <div class="row">
         <div class="col-md-3">
 
-            <div class="dropstart">
-                <button type="button" class="list-group-item list-group-item-action dropdown-toggle"
-                        data-bs-toggle="dropdown" aria-expanded="false">
+
+                <div class="dropright">
+                <button type="button" id="contact" class="list-group-item list-group-item-action dropdown-toggle"
+                        data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" onmouseover="activeNav(this)" onmouseout="normalNav(this)">
                     Contacts
                 </button>
                 <ul class="dropdown-menu">
@@ -33,10 +34,13 @@
                     <li><a class="list-group-item list-group-item-action dropstart-menu"
                            href="{% url 'create_contact' %}">Create new contact</a></li>
                 </ul>
-            </div>
-            <div class="dropstart">
-                <button type="button" class="list-group-item list-group-item-action dropdown-toggle"
-                        data-bs-toggle="dropdown" aria-expanded="false">
+                    </div>
+
+
+
+            <div class="dropright">
+                <button type="button" id="notes" class="list-group-item list-group-item-action dropdown-toggle"
+                        data-bs-toggle="dropdown" aria-expanded="false" onmouseover="activeNav(this)" onmouseout="normalNav(this)">
                     Notes
                 </button>
                 <ul class="dropdown-menu">
@@ -46,9 +50,10 @@
                            href="#">Create new note</a></li>
                 </ul>
             </div>
-            <div class="dropstart">
-                <button type="button" class="list-group-item list-group-item-action dropdown-toggle"
-                        data-bs-toggle="dropdown" aria-expanded="false">
+
+            <div class="dropright">
+                <button type="button" id="files" class="list-group-item list-group-item-action dropdown-toggle"
+                        data-bs-toggle="dropdown" aria-expanded="false" onmouseover="activeNav(this)" onmouseout="normalNav(this)">
                     Files storage
                 </button>
                 <ul class="dropdown-menu">
@@ -58,7 +63,7 @@
                            href="{% url 'upload_file' %}">Add new file</a></li>
                 </ul>
             </div>
-            <a href="#" class="list-group-item list-group-item-action">News</a>
+            <a href="#" class="list-group-item list-group-item-action" onmouseover="activeNews(this)" onmouseout="normalNews(this)">News</a>
 
             {% include 'inc/_notification.html' %}
         </div>
@@ -78,6 +83,43 @@
     {% endblock %}
 </div>
 {% endif %}
+
+<script>
+
+function normalNews(x) {
+  x.className = 'list-group-item list-group-item-action';
+}
+
+function activeNews(x) {
+  x.className = 'list-group-item list-group-item-action active';
+}
+
+function normalNav(x) {
+  x.className = 'list-group-item list-group-item-action dropdown-toggle';
+}
+
+function activeNav(x) {
+  x.className = 'list-group-item list-group-item-action dropdown-toggle active';
+}
+
+$(document).ready(function(){
+    $(".dropright").hover(function(){
+        var dropdownMenu = $(this).children(".dropdown-menu");
+        if(dropdownMenu.is(":visible")){
+            dropdownMenu.parent().toggleClass("open");
+        }
+    });
+});
+
+</script>
+<style>
+    .dropright:hover .dropdown-menu{
+        display: block;
+    }
+    .dropdown-menu{
+        margin-top: 0;
+    }
+</style>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
         crossorigin="anonymous"></script>
