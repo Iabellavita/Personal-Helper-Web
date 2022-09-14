@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Contact book - {{ block.super }}
+Contact Book - {{ block.super }}
 {% endblock %}
 
 {% block content %}
@@ -15,8 +15,9 @@ Contact book - {{ block.super }}
 {% endif %}
 {% endfor %}
 {% endif %}
+
 <div class="navbar bg-light">
-    <form class="container-fluid" action="{% url 'search' %}" method="get">
+    <form class="container-fluid" action="{% url 'search_contact' %}" method="get">
         <div class="input-group">
             <span class="input-group-text" id="basic-addon1">SEARCH</span>
             <input class="form-control" type="text" name="s" placeholder="username, phone, email">
@@ -32,7 +33,7 @@ Contact book - {{ block.super }}
 <div data-bs-spy="scroll" style="overflow: scroll;height: 550px" data-bs-root-margin="0px 0px -10%"
      data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="1">
     <div class="list-group">
-        {% if contacts_data%}
+        {% if contacts_data %}
         {% for contact in contacts_data %}
         <a href="{{ contact.get_absolute_url }}" class="list-group-item list-group-item-action"
            onmouseover="active(this)" onmouseout="normal(this)">
@@ -67,9 +68,5 @@ function normal(x) {
 function active(x) {
   x.className = 'list-group-item list-group-item-action active';
 }
-
-
-
-
 </script>
 {% endblock %}

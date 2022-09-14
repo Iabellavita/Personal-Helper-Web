@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
+from django.contrib.auth.decorators import login_required
 
 from .models import *
 from .forms import *
@@ -74,6 +75,7 @@ def create_contact(request):
 
 
 class ContactByUser(ListView):
+    login_required(login_url='home')
     model = Contacts
     template_name = 'contacts/contacts_view.html'
     context_object_name = 'contacts_data'
@@ -83,6 +85,7 @@ class ContactByUser(ListView):
 
 
 class Search(ListView):
+    login_required(login_url='home')
     template_name = 'contacts/contacts_view.html'
     context_object_name = 'contacts_data'
 

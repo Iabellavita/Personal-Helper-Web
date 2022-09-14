@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-File Upload - {{ block.super }}
+Files - {{ block.super }}
 {% endblock %}
 
 {% block content %}
@@ -15,11 +15,12 @@ File Upload - {{ block.super }}
 {% endif %}
 {% endfor %}
 {% endif %}
+
 <div class="navbar bg-light">
-    <form class="container-fluid" action="{% url 'search' %}" method="get">
+    <form class="container-fluid" action="{% url 'search_file' %}" method="get">
         <div class="input-group">
             <span class="input-group-text" id="basic-addon1">SEARCH</span>
-            <input class="form-control" type="text" name="s" placeholder="title file">
+            <input class="form-control" type="text" name="q" placeholder="title file">
             <input type="submit" hidden>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                 <button class="btn btn-secondary" type="submit" data-bs-toggle="button"><i class="fa fa-bars"></i>
@@ -28,11 +29,21 @@ File Upload - {{ block.super }}
         </div>
     </form>
 </div>
-
 <div data-bs-spy="scroll" style="overflow: scroll;height: 550px" data-bs-root-margin="0px 0px -10%"
      data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="1">
     <div class="list-group">
         {% if files_data %}
+        <ul class="nav nav-pills nav-fill justify-content-center">
+            <li class="nav-item">
+                <a class="mr-3 nav-link active" href="{% url 'image_files' %}">Images</a>
+            </li>
+            <li class="nav-item">
+                <a class="mr-3 nav-link active ml-3" href="{% url 'pdf_files' %}">PDF</a>
+            </li>
+            <li class="nav-item">
+                <a class="ml-3 nav-link active" href="{% url 'docs_files' %}">Docs</a>
+            </li>
+        </ul>
         {% for file in files_data %}
         <div class="card mt-3 mb-3">
             <div class="card-body">
@@ -41,7 +52,8 @@ File Upload - {{ block.super }}
                         <a class="nav-link" href="/media/{{ file.uploadfile }}" class="card-title">{{ file.title }}</a>
                     </div>
                     <nav class="nav nav-pills flex-column flex-sm-row">
-                        <a class="mr-3 flex-sm-fill text-sm-center nav-link active" href="{% url 'download_file' file.pk %}">Download</a>
+                        <a class="mr-3 flex-sm-fill text-sm-center nav-link active"
+                           href="{% url 'download_file' file.pk %}">Download</a>
                         <a class="flex-sm-fill text-sm-center nav-link active" href="{% url 'delete_file' file.pk%}">Delete</a>
                     </nav>
                 </div>
@@ -64,53 +76,13 @@ File Upload - {{ block.super }}
 {% endif %}
 
 <script>
-function showPhone() {
-    document.getElementById('phone-1').style.display = 'grid';
-    document.getElementById('show-b-p').style.display = 'none';
-}
-function showEmail() {
-    document.getElementById('email-1').style.display = 'grid';
-    document.getElementById('show-b-e').style.display = 'none';
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    function showPhone() {
+        document.getElementById('phone-1').style.display = 'grid';
+        document.getElementById('show-b-p').style.display = 'none';
+    }
+    function showEmail() {
+        document.getElementById('email-1').style.display = 'grid';
+        document.getElementById('show-b-e').style.display = 'none';
+    }
 </script>
 {% endblock %}
