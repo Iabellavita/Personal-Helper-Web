@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.db.models import Q
 from django.shortcuts import render, redirect
-from django.views.generic import ListView
+from django.views.generic import ListView, TemplateView
 from django.contrib.auth.decorators import login_required
 
 from .models import *
@@ -77,11 +77,30 @@ def create_contact(request):
 class ContactByUser(ListView):
     login_required(login_url='home')
     model = Contacts
+    initial = {'key': 'value'}
     template_name = 'contacts/contacts_view.html'
     context_object_name = 'contacts_data'
 
     def get_queryset(self):
         return Contacts.objects.filter(user_id=self.request.user.id)
+
+    def get(self, request, *args, **kwargs):
+        context = self.get_context_data(**kwargs)
+        return render(request, self.template_name, context)
+
+    def post(self, request, *args, **kwargs):
+        context = self.get_context_data(**kwargs)
+        contact_list = self.request.POST.getlist('contact')
+        Contacts.objects.filter(pk__in=contact_list).delete()
+        return render(request, self.template_name, context)
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        object_list = self.get_queryset()
+        context = super().get_context_data(**kwargs, object_list=object_list)
+        return context
+
+
+
 
 
 class Search(ListView):

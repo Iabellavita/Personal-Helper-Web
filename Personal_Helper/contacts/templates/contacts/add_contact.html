@@ -21,7 +21,7 @@ Create New Contact - {{ block.super }}
     {% csrf_token %}
 
     <div class="mb-3">
-        <label class="form-label">Contact name:</label>
+        <label class="form-label">Contact name:<span style="color: red">*</span></label>
         {{form.name}}
     </div>
 

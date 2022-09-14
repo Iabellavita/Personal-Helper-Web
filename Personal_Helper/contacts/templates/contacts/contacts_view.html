@@ -32,6 +32,8 @@ Contact Book - {{ block.super }}
 
 <div data-bs-spy="scroll" style="overflow: scroll;height: 550px" data-bs-root-margin="0px 0px -10%"
      data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="1">
+        <form id="contactForm" class="container-fluid" action="{% url 'contact_list' %}" method="post">
+        {% csrf_token %}
     <div class="list-group">
         {% if contacts_data %}
         {% for contact in contacts_data %}
@@ -39,7 +41,7 @@ Contact Book - {{ block.super }}
            onmouseover="active(this)" onmouseout="normal(this)">
             <div class="d-flex w-100 justify-content-between">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
+                    <input class="form-check-input" type="checkbox" name="contact" value="{{contact.pk}}" id="flexCheckIndeterminate">
                     <h5 class="mb-1">{{contact.name}}</h5>
                     <small>Days to birthday: {{contact.days_to_birthday}}</small>
                 </div>
@@ -48,10 +50,11 @@ Contact Book - {{ block.super }}
         </a>
         {% endfor %}
     </div>
+            </form>
 </div>
 
 <div class="d-grid d-md-flex justify-content-md-end mb-2">
-    <button type="submit" class="btn btn-danger btn-block mt-3" disabled><i class="fa fa-trash"></i> DELETE</button>
+    <button type="submit" form="contactForm" class="btn btn-danger btn-block mt-3" id="submit" disabled><i class="fa fa-trash"></i> DELETE</button>
 </div>
 
 
@@ -59,7 +62,7 @@ Contact Book - {{ block.super }}
 <img src="https://cdn.dribbble.com/users/415089/screenshots/14359077/media/12e60e1d4f5556b56310908bc9e6c2ea.jpg?compress=1&resize=768x576&vertical=top"
      height="85%" width="85%" class="rounded mx-auto d-block" alt="not-search-result">
 {% endif %}
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
 function normal(x) {
   x.className = 'list-group-item list-group-item-action';
@@ -68,5 +71,17 @@ function normal(x) {
 function active(x) {
   x.className = 'list-group-item list-group-item-action active';
 }
+
+$(function() {
+    $('.form-check-input').click(function() {
+        if ($('.form-check-input').is(':checked')) {
+            $('#submit').removeAttr('disabled');
+        } else {
+            $('#submit').attr('disabled', 'disabled');
+        }
+    });
+});
+
+
 </script>
 {% endblock %}

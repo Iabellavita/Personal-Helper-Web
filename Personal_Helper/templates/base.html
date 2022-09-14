@@ -1,4 +1,5 @@
 {% load static %}
+{% load contact_count %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -15,7 +16,6 @@
 
 {% include 'inc/_navbar.html' %}
 
-
 {% if user.is_authenticated %}
 <div class="container mt-3">
     <h1>👤 {{ user.username }}</h1>
@@ -28,8 +28,8 @@
                     Contacts
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a class="list-group-item list-group-item-action dropstart-menu"
-                           href="{% url 'contact_list' %}">Contact book</a></li>
+                    <li><a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center dropstart-menu"
+                           href="{% url 'contact_list' %}">Contact book <span class="badge bg-info rounded-pill">{% count_contact %}</span></a></li>
                     <li><a class="list-group-item list-group-item-action dropstart-menu"
                            href="{% url 'create_contact' %}">Create new contact</a></li>
                 </ul>
