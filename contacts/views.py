@@ -1,13 +1,14 @@
 from django.contrib import messages
 from django.db.models import Q
 from django.shortcuts import render, redirect
-from django.views.generic import ListView, TemplateView
+from django.views.generic import ListView
 from django.contrib.auth.decorators import login_required
 
 from .models import *
 from .forms import *
 
 
+@login_required(login_url='home')
 def user_contact(request, pk):
     user = request.user.id
     instance = Contacts.objects.filter(pk=pk, user_id=user).first()
@@ -27,6 +28,7 @@ def user_contact(request, pk):
         return render(request, 'contacts/edit_contact.html', {'form': form})
 
 
+@login_required(login_url='home')
 def create_contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
@@ -100,9 +102,6 @@ class ContactByUser(ListView):
         return context
 
 
-
-
-
 class Search(ListView):
     login_required(login_url='home')
     template_name = 'contacts/contacts_view.html'
@@ -117,3 +116,7 @@ class Search(ListView):
             Q(phone_one__icontains=self.request.GET.get('s'), user_id=self.request.user.id) |
             Q(email__icontains=self.request.GET.get('s'), user_id=self.request.user.id) |
             Q(email_one__icontains=self.request.GET.get('s'), user_id=self.request.user.id))
+
+
+def page_not_found_view(request, exception):
+    return render(request, '404.html', status=404)
