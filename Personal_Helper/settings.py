@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-3fivxq+4h7q#)%3wz$m2znp3wi2*t(v7!z^gy6w8lm1sxz1cp*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False # Use False for show 404 page
+DEBUG = True # Use False for show 404 page
 
-ALLOWED_HOSTS = ['127.0.0.1'] # Use empty list for show 404 page
+ALLOWED_HOSTS = [] # Use empty list for show 404 page - ['127.0.0.1']
 
 # Application definition
 
