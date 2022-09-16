@@ -5,7 +5,11 @@ SignUP - {{ block.super }}
 {% endblock %}
 
 {% block start %}
-<h2>Registration</h2>
+
+<form method="post">
+<div class="container mt-3">
+
+<div class="card d-grid gap-2 col-6 mt-2 mx-auto" style="width: 28rem;">
 {% if messages %}
 {% for message in messages %}
 {% if message.tag == error %}
@@ -19,9 +23,11 @@ SignUP - {{ block.super }}
 {% endif %}
 {% endfor %}
 {% endif %}
-<form method="post">
+        <h2 class="text-center mt-2">Registration</h2>
     {% csrf_token %}
     {{ form.as_p }}
-    <button class="btn btn-primary">Registration</button>
+    <button class="btn btn-primary mb-3">Registration</button>
+    </div>
+     </div>
 </form>
 {% endblock %}

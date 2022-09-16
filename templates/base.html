@@ -83,10 +83,10 @@
 </div>
 {% else %}
 
-<div class="col-md-9">
+
     {% block start %}
     {% endblock %}
-</div>
+
 {% endif %}
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
@@ -96,4 +96,19 @@
         crossorigin="anonymous"></script>
 <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
 </body>
+    <footer id="footer" class="text-center text-lg-start bg-light text-muted">
+<div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05)">
+    © 2022 Copyright:
+    <a class="text-reset fw-bold" href="#">Team2-Helper</a>
+  </div>
+    </footer>
+<style>
+#footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   text-align: center;
+}
+</style>
 </html>

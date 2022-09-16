@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-3fivxq+4h7q#)%3wz$m2znp3wi2*t(v7!z^gy6w8lm1sxz1cp*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False # Use False for show 404 page
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1'] # Use empty list for show 404 page
 
 # Application definition
 
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'files.apps.FilesConfig',
     'contacts.apps.ContactsConfig',
     'news.apps.NewsConfig',
+    'captcha',
 ]
 
 MIDDLEWARE = [
@@ -131,3 +132,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # EMAIL_HOST_PASSWORD = ''
 # EMAIL_USE_SSL = True
 # EMAIL_USE_TLS = False
+
+CAPTCHA_BACKGROUND_COLOR = 'blue'
+CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.math_challenge'
+CAPTCHA_NOISE_FUNCTIONS = ('captcha.helpers.noise_null',)
