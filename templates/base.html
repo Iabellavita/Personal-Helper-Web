@@ -50,9 +50,11 @@
                 </button>
                 <ul class="dropdown-menu">
                     <li><a class="list-group-item list-group-item-action dropstart-menu"
-                           href="#">Notes book</a></li>
+                           href="{% url 'notes_list' %}">Notes book</a></li>
                     <li><a class="list-group-item list-group-item-action dropstart-menu"
-                           href="#">Create new note</a></li>
+                           href="{% url 'create_note' %}">Create new note</a></li>
+                    <li><a class="list-group-item list-group-item-action dropstart-menu"
+                           href="{% url 'create_tag' %}">Create new tag</a></li>
                 </ul>
             </div>
 
