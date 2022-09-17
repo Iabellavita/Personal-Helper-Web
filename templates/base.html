@@ -1,5 +1,6 @@
 {% load static %}
 {% load contact_count %}
+{% load notes_count %}
 {% load files_count %}
 <!doctype html>
 <html lang="en">
@@ -50,7 +51,7 @@
                 </button>
                 <ul class="dropdown-menu">
                     <li><a class="list-group-item list-group-item-action dropstart-menu"
-                           href="{% url 'notes_list' %}">Notes book</a></li>
+                           href="{% url 'notes_list' %}">Notes book <span class="badge bg-info rounded-pill">{% count_notes %}</span></a></li>
                     <li><a class="list-group-item list-group-item-action dropstart-menu"
                            href="{% url 'create_note' %}">Create new note</a></li>
                     <li><a class="list-group-item list-group-item-action dropstart-menu"

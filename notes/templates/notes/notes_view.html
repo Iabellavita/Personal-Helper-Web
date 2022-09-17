@@ -20,8 +20,7 @@ Notes Book - {{ block.super }}
 <div class="navbar bg-light">
     <form class="container-fluid" action="{% url 'search_notes' %}" method="get">
         <div class="input-group">
-            <span class="input-group-text" id="basic-addon1">SEARCH</span>
-            <input class="form-control" type="text" name="a" placeholder="name, description, tags">
+            <input class="form-control" type="text" name="a" placeholder="notename, description">
             <input type="submit" hidden>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                 <button class="btn btn-secondary" type="submit" data-bs-toggle="button"><i class="fa fa-bars"></i>
@@ -37,7 +36,7 @@ Notes Book - {{ block.super }}
         {% csrf_token %}
         <div class="list-group">
             {% if notes_data %}
-            {% for note in notes_list %}
+            {% for note in notes_data %}
             <div class="list-group-item list-group-item-action" onmouseout="normal(this)">
                 <div class="d-flex w-100 justify-content-between">
                     <div class="form-check">
@@ -48,13 +47,13 @@ Notes Book - {{ block.super }}
                     </div>
                     <div>
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">
+                                data-bs-target="#exampleModal{{note.id}}">
                             <i class="fa fa-info-circle"></i>
                         </button>
                     </div>
                 </div>
             </div>
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            <div class="modal fade" id="exampleModal{{note.id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
                  aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -65,7 +64,7 @@ Notes Book - {{ block.super }}
                         <div class="modal-body">
                             Note name: {{note.name}} <br>
                             Note description: {{note.text}} <br>
-                            Note tags: {{note.tags}} <br>
+                            Note tags: {{note.tags.all|join:", "}} <br>
                         </p><br>
                         </div>
                         <div class="modal-footer">

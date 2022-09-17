@@ -1,4 +1,4 @@
-from msilib.schema import ListView
+from django.views.generic import ListView
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.db.models import Q
@@ -10,7 +10,7 @@ from .forms import *
 def create_note(request):
     if request.method == 'POST':
         form = NoteForm(request.POST)
-        if form.is_vaild():
+        if form.is_valid():
             name = form.cleaned_data['name']
             text = form.cleaned_data['text']
             tags = form.cleaned_data['tags']
@@ -27,9 +27,9 @@ def create_note(request):
                     note = Note.objects.create(
                         name=name,
                         text=text,
-                        tags=tags,
                         user_id=user
                         )
+                    note.tags.set(tags)
                 note.save()
                 messages.success(request, 'Success create')
                 return redirect('create_note')
@@ -39,13 +39,15 @@ def create_note(request):
             messages.error(request, 'Error valid from')
     else:
         form = NoteForm()
-    return render(request, 'notes/create_note.html', {'form': form})
+    
+    tags = Tag.objects.all()
+    return render(request, 'notes/create_note.html', {'form': form, 'tags': tags})
 
 @login_required(login_url='home')
 def create_tag(request):
     if request.method == 'POST':
         form = TagForm(request.POST)
-        if form.is_vaild():
+        if form.is_valid():
             tag = form.cleaned_data['tag']
             user = request.user.id
             tags = Tag.objects.filter(tag=tag, user_id=user).first()
@@ -117,8 +119,7 @@ class Search(ListView):
             return None
         return Note.objects.filter(
             Q(name__icontains=self.request.GET.get('a'), user_id=self.request.user.id)|
-            Q(text__icontains=self.request.GET.get('a'), user_id=self.request.user.id)|
-            Q(tag__icontains=self.request.GET.get('a'), user_id=self.request.user.id))
+            Q(text__icontains=self.request.GET.get('a'), user_id=self.request.user.id))
         
 
 

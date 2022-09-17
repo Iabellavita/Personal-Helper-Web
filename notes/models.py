@@ -1,3 +1,4 @@
+from django.urls import reverse
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -8,6 +9,9 @@ class Tag(models.Model):
 
     def __str__(self) -> str:
         return self.tag
+
+    def __repr__(self) -> str:
+        return self.tagы
 
     class Meta:
         verbose_name = 'Tag'
@@ -22,6 +26,9 @@ class Note(models.Model):
     
     def __str__(self) -> str:
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('note', kwargs={'pk': self.pk})
 
     class Meta:
         verbose_name = 'Note'
