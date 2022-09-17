@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .forms import UploadFileForm
 from .models import Files
@@ -10,7 +10,6 @@ import os
 
 
 class FilesByUser(ListView):
-    login_required(login_url='home')
     model = Files
     template_name = 'files/files_view.html'
     context_object_name = 'files_data'
@@ -38,7 +37,7 @@ def upload_file(request):
 
 @login_required(login_url='home')
 def delete_file(request, file_id):
-    file = Files.objects.get(pk=file_id)
+    file = get_object_or_404(Files, pk=file_id)
     file.delete()
     os.remove(f'./media/{file.uploadfile}')
 
@@ -47,7 +46,7 @@ def delete_file(request, file_id):
 
 @login_required(login_url='home')
 def download_file(request, file_id):
-    file = Files.objects.get(pk=file_id)
+    file = get_object_or_404(Files, pk=file_id)
 
     filepath = f'./media/{file.uploadfile}'
     filename = filepath.split('/')[6]
@@ -58,7 +57,6 @@ def download_file(request, file_id):
 
 
 class Search(ListView):
-    login_required(login_url='home')
     model = Files
     template_name = 'files/files_view.html'
     context_object_name = 'files_data'
@@ -70,7 +68,6 @@ class Search(ListView):
 
 
 class ImagesFiles(ListView):
-    login_required(login_url='home')
     model = Files
     template_name = 'files/files_view.html'
     context_object_name = 'files_data'
@@ -84,7 +81,6 @@ class ImagesFiles(ListView):
 
 
 class DocsFiles(ListView):
-    login_required(login_url='home')
     model = Files
     template_name = 'files/files_view.html'
     context_object_name = 'files_data'
@@ -98,7 +94,6 @@ class DocsFiles(ListView):
 
 
 class PDFFiles(ListView):
-    login_required(login_url='home')
     model = Files
     template_name = 'files/files_view.html'
     context_object_name = 'files_data'

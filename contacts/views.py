@@ -77,7 +77,6 @@ def create_contact(request):
 
 
 class ContactByUser(ListView):
-    login_required(login_url='home')
     model = Contacts
     initial = {'key': 'value'}
     template_name = 'contacts/contacts_view.html'
@@ -103,7 +102,6 @@ class ContactByUser(ListView):
 
 
 class Search(ListView):
-    login_required(login_url='home')
     template_name = 'contacts/contacts_view.html'
     context_object_name = 'contacts_data'
 

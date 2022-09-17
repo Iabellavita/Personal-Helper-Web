@@ -84,8 +84,8 @@
 {% else %}
 
 
-    {% block start %}
-    {% endblock %}
+{% block start %}
+{% endblock %}
 
 {% endif %}
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
@@ -96,12 +96,10 @@
         crossorigin="anonymous"></script>
 <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
 </body>
-    <footer id="footer" class="text-center text-lg-start bg-light text-muted">
-<div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05)">
-    © 2022 Copyright:
-    <a class="text-reset fw-bold" href="#">Team2-Helper</a>
-  </div>
-    </footer>
-<style>
-</style>
+<footer class="text-center text-lg-start bg-light text-muted">
+    <div id="footer" class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05)">
+        © 2022 Copyright:
+        <a class="text-reset fw-bold" href="#">Team2-Helper</a>
+    </div>
+</footer>
 </html>
