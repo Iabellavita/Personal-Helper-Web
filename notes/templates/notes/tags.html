@@ -24,8 +24,7 @@ Files - {{ block.super }}
             <input class="form-control" type="text" name="q" placeholder="tag">
             <input type="submit" hidden>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button class="btn btn-secondary" type="submit" data-bs-toggle="button"><i class="fa fa-bars"></i>
-                </button>
+                 <a class="navbar-brand ml-3" href="{% url 'tags' %}"><i class="fa fa-bars"></i></a>
             </div>
         </div>
     </form>

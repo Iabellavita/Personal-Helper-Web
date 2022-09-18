@@ -24,8 +24,7 @@ Files - {{ block.super }}
             <input class="form-control" type="text" name="q" placeholder="title file">
             <input type="submit" hidden>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button class="btn btn-secondary" type="submit" data-bs-toggle="button"><i class="fa fa-bars"></i>
-                </button>
+                 <a class="navbar-brand ml-3" href="{% url 'files' %}"><i class="fa fa-bars"></i></a>
             </div>
         </div>
     </form>
@@ -34,13 +33,13 @@ Files - {{ block.super }}
      data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="1">
     <ul class="nav nav-pills nav-fill justify-content-center">
         <li class="nav-item">
-            <a class="mr-3 nav-link active" href="{% url 'image_files' %}">Images</a>
+            <a class="mr-1 nav-link active" href="{% url 'image_files' %}">Images</a>
         </li>
         <li class="nav-item">
-            <a class="mr-3 nav-link active ml-3" href="{% url 'pdf_files' %}">PDF</a>
+            <a class="mr-1 nav-link active ml-1" href="{% url 'pdf_files' %}">PDF</a>
         </li>
         <li class="nav-item">
-            <a class="ml-3 nav-link active" href="{% url 'docs_files' %}">Docs</a>
+            <a class="ml-2 nav-link active" href="{% url 'docs_files' %}">Docs</a>
         </li>
     </ul>
     {% if files_data %}
