@@ -21,9 +21,9 @@ class Tag(models.Model):
 class Note(models.Model):
     name = models.CharField(max_length=40, null=False, unique=True)
     text = models.TextField(null=False)
-    tags = models.ManyToManyField(Tag)
+    tags = models.ManyToManyField(Tag, related_name="tags")
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
-    
+
     def __str__(self) -> str:
         return self.name
 

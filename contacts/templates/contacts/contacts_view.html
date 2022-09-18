@@ -20,6 +20,7 @@ Contact Book - {{ block.super }}
 <div class="navbar bg-light">
     <form class="container-fluid" action="{% url 'search_contact' %}" method="get">
         <div class="input-group">
+            <button class="btn btn-secondary" type="submit" id="basic-addon1">SEARCH</button>
             <input class="form-control" type="text" name="s" placeholder="username, phone, email">
             <input type="submit" hidden>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -34,7 +35,7 @@ Contact Book - {{ block.super }}
      data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="1">
     <form id="contactForm" class="container-fluid" action="{% url 'contact_list' %}" method="post">
         {% csrf_token %}
-    {% if contacts_data %}
+        {% if contacts_data %}
         <div class="list-group">
             {% for contact in contacts_data %}
             <div class="list-group-item list-group-item-action" onmouseout="normal(this)">
@@ -93,12 +94,11 @@ Contact Book - {{ block.super }}
     </button>
 
 
-
-{% else %}
-<img src="https://cdn.dribbble.com/users/415089/screenshots/14359077/media/12e60e1d4f5556b56310908bc9e6c2ea.jpg?compress=1&resize=768x576&vertical=top"
-     height="85%" width="85%" class="rounded mx-auto d-block" alt="not-search-result">
-{% endif %}
-    </div>
+    {% else %}
+    <img src="https://cdn.dribbble.com/users/415089/screenshots/14359077/media/12e60e1d4f5556b56310908bc9e6c2ea.jpg?compress=1&resize=768x576&vertical=top"
+         height="85%" width="85%" class="rounded mx-auto d-block" alt="not-search-result">
+    {% endif %}
+</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
 {% endblock %}

@@ -16,7 +16,7 @@
 </head>
 <body>
 <nav>
-{% include 'inc/_navbar.html' %}
+    {% include 'inc/_navbar.html' %}
 </nav>
 {% if user.is_authenticated %}
 <div class="container mt-3">
@@ -26,9 +26,10 @@
             <a href="{% url 'news' %}" class="list-group-item list-group-item-action" onmouseover="activeNews(this)"
                onmouseout="normalNews(this)">📰 News</a>
             <div class="dropright">
-                <button  type="button" id="contact" class="list-group-item list-group-item-action dropdown-toggle"
-                        data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true"
-                        onmouseover="activeNav(this)" onmouseout="normalNav(this)">
+                <button disabled type="button" id="contacts"
+                        class="list-group-item list-group-item-action dropdown-toggle"
+                        data-bs-toggle="dropdown" aria-expanded="false" onmouseover="activeNav(this)"
+                        onmouseout="normalNav(this)">
                     👥 Contacts
                 </button>
                 <ul class="dropdown-menu">
@@ -50,7 +51,10 @@
                 </button>
                 <ul class="dropdown-menu">
                     <li><a class="list-group-item list-group-item-action dropstart-menu"
-                           href="{% url 'notes_list' %}">Notes book <span class="badge bg-info rounded-pill">{% count_notes %}</span></a></li>
+                           href="{% url 'notes_list' %}">Notes book <span class="badge bg-info rounded-pill">{% count_notes %}</span></a>
+                    </li>
+                    <li><a class="list-group-item list-group-item-action dropstart-menu"
+                           href="{% url 'tags' %}">Tags</a></li>
                     <li><a class="list-group-item list-group-item-action dropstart-menu"
                            href="{% url 'create_note' %}">Create new note</a></li>
                     <li><a class="list-group-item list-group-item-action dropstart-menu"
@@ -72,7 +76,7 @@
                            href="{% url 'upload_file' %}">Add new file</a></li>
                 </ul>
             </div>
-        {% include 'inc/_notification.html' %}
+            {% include 'inc/_notification.html' %}
         </div>
 
 

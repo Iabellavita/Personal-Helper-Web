@@ -20,7 +20,8 @@ Notes Book - {{ block.super }}
 <div class="navbar bg-light">
     <form class="container-fluid" action="{% url 'search_notes' %}" method="get">
         <div class="input-group">
-            <input class="form-control" type="text" name="a" placeholder="notename, description">
+            <button class="btn btn-secondary" type="submit" id="basic-addon1">SEARCH</button>
+            <input class="form-control" type="text" name="a" placeholder="notename, description, tags">
             <input type="submit" hidden>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                 <button class="btn btn-secondary" type="submit" data-bs-toggle="button"><i class="fa fa-bars"></i>
@@ -37,20 +38,25 @@ Notes Book - {{ block.super }}
         <div class="list-group">
             {% if notes_data %}
             {% for note in notes_data %}
-            <div class="list-group-item list-group-item-action" onmouseout="normal(this)">
-                <div class="d-flex w-100 justify-content-between">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="note" value="{{note.pk}}"
-                               id="flexCheckIndeterminate">
-                        <a style="color: black" href="{{ note.get_absolute_url }}"><h5 class="mb-1">
-                            {{note.name}}</h5></a>
+            <div class="card mb-4">
+                <div class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-between">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="note" value="{{note.pk}}"
+                                   id="flexCheckIndeterminate">
+                            <a style="color: black" href="{{ note.get_absolute_url }}"><h5 class="mb-1">
+                                {{note.name}}</h5></a>
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal{{note.id}}">
+                                Read more
+                            </button>
+                        </div>
                     </div>
-                    <div>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal{{note.id}}">
-                            <i class="fa fa-info-circle"></i>
-                        </button>
-                    </div>
+                </div>
+                <div class="card-footer">
+                    Tags: {{note.tags.all|join:" "}}
                 </div>
             </div>
             <div class="modal fade" id="exampleModal{{note.id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -65,7 +71,7 @@ Notes Book - {{ block.super }}
                             Note name: {{note.name}} <br>
                             Note description: {{note.text}} <br>
                             Note tags: {{note.tags.all|join:", "}} <br>
-                        </p><br>
+                            </p><br>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -84,16 +90,13 @@ Notes Book - {{ block.super }}
     <button type="submit" form="noteForm" class="btn btn-danger btn-block mt-3" id="submit" disabled><i
             class="fa fa-trash"></i> DELETE
     </button>
+
+
+    {% else %}
+    <img src="https://cdn.dribbble.com/users/415089/screenshots/14359077/media/12e60e1d4f5556b56310908bc9e6c2ea.jpg?compress=1&resize=768x576&vertical=top"
+         height="85%" width="85%" class="rounded mx-auto d-block" alt="not-search-result">
+    {% endif %}
 </div>
-
-
-{% else %}
-<img src="https://cdn.dribbble.com/users/415089/screenshots/14359077/media/12e60e1d4f5556b56310908bc9e6c2ea.jpg?compress=1&resize=768x576&vertical=top"
-     height="85%" width="85%" class="rounded mx-auto d-block" alt="not-search-result">
-{% endif %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js"
-        integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc"
-        crossorigin="anonymous"></script>
 <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
 {% endblock %}

@@ -20,7 +20,7 @@ Files - {{ block.super }}
 <div class="navbar bg-light">
     <form class="container-fluid" action="{% url 'search_file' %}" method="get">
         <div class="input-group">
-            <span class="input-group-text" id="basic-addon1">SEARCH</span>
+            <button class="btn btn-secondary" type="submit" id="basic-addon1">SEARCH</button>
             <input class="form-control" type="text" name="q" placeholder="title file">
             <input type="submit" hidden>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -43,7 +43,7 @@ Files - {{ block.super }}
             <a class="ml-3 nav-link active" href="{% url 'docs_files' %}">Docs</a>
         </li>
     </ul>
-{% if files_data %}
+    {% if files_data %}
     <div class="list-group">
         {% for file in files_data %}
         <div class="card mt-3 mb-3">
@@ -69,19 +69,19 @@ Files - {{ block.super }}
         </div>
         {% endfor %}
     </div>
-
+</div>
 
 <div class="d-grid d-md-flex justify-content-md-end mb-2">
     <button type="submit" form="contactForm" class="btn btn-danger btn-block mt-3" id="submit" disabled><i
             class="fa fa-trash"></i> DELETE
     </button>
-</div>
 
-{% else %}
-<img src="https://cdn.dribbble.com/users/415089/screenshots/14359077/media/12e60e1d4f5556b56310908bc9e6c2ea.jpg?compress=1&resize=768x576&vertical=top"
-     height="80%" width="80%" class="rounded mx-auto d-block" alt="not-search-result">
-{% endif %}
-    </div>
+
+    {% else %}
+    <img src="https://cdn.dribbble.com/users/415089/screenshots/14359077/media/12e60e1d4f5556b56310908bc9e6c2ea.jpg?compress=1&resize=768x576&vertical=top"
+         height="85%" width="85%" class="rounded mx-auto d-block" alt="not-search-result">
+    {% endif %}
+</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
 {% endblock %}

@@ -38,6 +38,12 @@ def upload_file(request):
 @login_required(login_url='home')
 def delete_file(request, file_id):
     file = get_object_or_404(Files, pk=file_id)
+
+    if request.method == 'POST':
+        if request.POST.get('b-delete') == 'delete':
+            file.delete()
+
+    file = get_object_or_404(Files, pk=file_id)
     file.delete()
     os.remove(f'./media/{file.uploadfile}')
 
