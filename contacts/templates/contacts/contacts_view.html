@@ -30,12 +30,12 @@ Contact Book - {{ block.super }}
     </form>
 </div>
 
-<div data-bs-spy="scroll" style="overflow: scroll;height: 550px" data-bs-root-margin="0px 0px -10%"
+<div data-bs-spy="scroll" style="overflow: scroll;height: 550px;" data-bs-root-margin="0px 0px -10%"
      data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="1">
     <form id="contactForm" class="container-fluid" action="{% url 'contact_list' %}" method="post">
         {% csrf_token %}
+    {% if contacts_data %}
         <div class="list-group">
-            {% if contacts_data %}
             {% for contact in contacts_data %}
             <div class="list-group-item list-group-item-action" onmouseout="normal(this)">
                 <div class="d-flex w-100 justify-content-between">
@@ -62,7 +62,6 @@ Contact Book - {{ block.super }}
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Contact info</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             Contact name: {{contact.name}} <br>
@@ -92,16 +91,14 @@ Contact Book - {{ block.super }}
     <button type="submit" form="contactForm" class="btn btn-danger btn-block mt-3" id="submit" disabled><i
             class="fa fa-trash"></i> DELETE
     </button>
-</div>
+
 
 
 {% else %}
 <img src="https://cdn.dribbble.com/users/415089/screenshots/14359077/media/12e60e1d4f5556b56310908bc9e6c2ea.jpg?compress=1&resize=768x576&vertical=top"
      height="85%" width="85%" class="rounded mx-auto d-block" alt="not-search-result">
 {% endif %}
+    </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js"
-        integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc"
-        crossorigin="anonymous"></script>
 <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
 {% endblock %}
