@@ -23,8 +23,7 @@ Notes Book - {{ block.super }}
             <input class="form-control" type="text" name="a" placeholder="notename, description">
             <input type="submit" hidden>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button class="btn btn-secondary" type="submit" data-bs-toggle="button"><i class="fa fa-bars"></i>
-                </button>
+                <a class="navbar-brand ml-3" href="{% url 'notes_list' %}"><i class="fa fa-bars"></i></a>
             </div>
         </div>
     </form>
@@ -42,8 +41,8 @@ Notes Book - {{ block.super }}
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" name="note" value="{{note.pk}}"
                                id="flexCheckIndeterminate">
-                        <a style="color: black" href="{{ note.get_absolute_url }}"><h5 class="mb-1">
-                            {{note.name}}</h5></a>
+                        <a style="color: black" href="{{ note.get_absolute_url }}">
+                            <h5 class="mb-1">{{note.name}}</h5></a>
                     </div>
                     <div>
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
@@ -59,7 +58,7 @@ Notes Book - {{ block.super }}
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Note info</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
                         </div>
                         <div class="modal-body">
                             Note name: {{note.name}} <br>

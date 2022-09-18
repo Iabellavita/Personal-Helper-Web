@@ -1,17 +1,20 @@
-<div class="card mt-4">
-  <div class="card-header">
-    Notification
-  </div>
-  <div class="card-body">
-    <h5 class="card-title">Coming soon birthday</h5>
-  {% if  birthdays %}
+ <div class="accordion mt-4" id="accordionPanelsStayOpenExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+        Notification
+      </button>
+    </h2>
+    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+      <div class="accordion-body">
+          {% if  birthdays %}
       {% for contact in birthdays %}
-    <p class="card-text">Contact:{{ contact.name }}</p>
-    <p class="card-text">days to birthday: {{ contact.days_to_birthday }}</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-      {% endfor %}
+        <strong>Coming soon birthday</strong><br>Contact: {{ contact.name }}<br>days to birthday: {{ contact.days_to_birthday }}
+          {% endfor %}
   {% else %}
-      <p class="card-text">The next 7 days there are no birthday parties</p>
-  {% endif %}
+              <strong>Coming soon birthday</strong><br>The next 7 days there are no birthday parties
+      {% endif %}
+      </div>
+    </div>
   </div>
 </div>

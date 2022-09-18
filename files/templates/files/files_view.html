@@ -24,8 +24,7 @@ Files - {{ block.super }}
             <input class="form-control" type="text" name="q" placeholder="title file">
             <input type="submit" hidden>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button class="btn btn-secondary" type="submit" data-bs-toggle="button"><i class="fa fa-bars"></i>
-                </button>
+                 <a class="navbar-brand ml-3" href="{% url 'files' %}"><i class="fa fa-bars"></i></a>
             </div>
         </div>
     </form>
@@ -34,13 +33,13 @@ Files - {{ block.super }}
      data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="1">
     <ul class="nav nav-pills nav-fill justify-content-center">
         <li class="nav-item">
-            <a class="mr-3 nav-link active" href="{% url 'image_files' %}">Images</a>
+            <a class="mr-1 nav-link active" href="{% url 'image_files' %}">Images</a>
         </li>
         <li class="nav-item">
-            <a class="mr-3 nav-link active ml-3" href="{% url 'pdf_files' %}">PDF</a>
+            <a class="mr-1 nav-link active ml-1" href="{% url 'pdf_files' %}">PDF</a>
         </li>
         <li class="nav-item">
-            <a class="ml-3 nav-link active" href="{% url 'docs_files' %}">Docs</a>
+            <a class="ml-2 nav-link active" href="{% url 'docs_files' %}">Docs</a>
         </li>
     </ul>
 {% if files_data %}
@@ -69,7 +68,7 @@ Files - {{ block.super }}
         </div>
         {% endfor %}
     </div>
-
+</div>
 
 <div class="d-grid d-md-flex justify-content-md-end mb-2">
     <button type="submit" form="contactForm" class="btn btn-danger btn-block mt-3" id="submit" disabled><i
@@ -81,7 +80,7 @@ Files - {{ block.super }}
 <img src="https://cdn.dribbble.com/users/415089/screenshots/14359077/media/12e60e1d4f5556b56310908bc9e6c2ea.jpg?compress=1&resize=768x576&vertical=top"
      height="80%" width="80%" class="rounded mx-auto d-block" alt="not-search-result">
 {% endif %}
-    </div>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
 {% endblock %}

@@ -11,7 +11,7 @@ class Tag(models.Model):
         return self.tag
 
     def __repr__(self) -> str:
-        return self.tagы
+        return self.tag
 
     class Meta:
         verbose_name = 'Tag'
