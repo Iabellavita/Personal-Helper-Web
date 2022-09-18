@@ -1,5 +1,6 @@
 {% load static %}
 {% load contact_count %}
+{% load notes_count %}
 {% load files_count %}
 <!doctype html>
 <html lang="en">
@@ -14,19 +15,18 @@
     <title>{% block title %}PH by Team #2 🤙🏽{% endblock %}</title>
 </head>
 <body>
-
+<nav>
 {% include 'inc/_navbar.html' %}
-
+</nav>
 {% if user.is_authenticated %}
 <div class="container mt-3">
-    <h1>👤 {{ user.username }}</h1>
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 mt-3">
 
             <a href="{% url 'news' %}" class="list-group-item list-group-item-action" onmouseover="activeNews(this)"
                onmouseout="normalNews(this)">📰 News</a>
             <div class="dropright">
-                <button type="button" id="contact" class="list-group-item list-group-item-action dropdown-toggle"
+                <button  type="button" id="contact" class="list-group-item list-group-item-action dropdown-toggle"
                         data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true"
                         onmouseover="activeNav(this)" onmouseout="normalNav(this)">
                     👥 Contacts
@@ -36,28 +36,30 @@
                         <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center dropstart-menu"
                            href="{% url 'contact_list' %}">Contact book <span class="badge bg-info rounded-pill">{% count_contact %}</span></a>
                     </li>
-                    <li><a class="list-group-item list-group-item-action dropstart-menu"
+                    <li><a class="list-group-item list-group-item-action"
                            href="{% url 'create_contact' %}">Create new contact</a></li>
                 </ul>
             </div>
 
 
             <div class="dropright">
-                <button type="button" id="notes" class="list-group-item list-group-item-action dropdown-toggle"
+                <button disabled type="button" id="notes" class="list-group-item list-group-item-action dropdown-toggle"
                         data-bs-toggle="dropdown" aria-expanded="false" onmouseover="activeNav(this)"
                         onmouseout="normalNav(this)">
                     📒 Notes
                 </button>
                 <ul class="dropdown-menu">
                     <li><a class="list-group-item list-group-item-action dropstart-menu"
-                           href="#">Notes book</a></li>
+                           href="{% url 'notes_list' %}">Notes book <span class="badge bg-info rounded-pill">{% count_notes %}</span></a></li>
                     <li><a class="list-group-item list-group-item-action dropstart-menu"
-                           href="#">Create new note</a></li>
+                           href="{% url 'create_note' %}">Create new note</a></li>
+                    <li><a class="list-group-item list-group-item-action dropstart-menu"
+                           href="{% url 'create_tag' %}">Create new tag</a></li>
                 </ul>
             </div>
 
             <div class="dropright">
-                <button type="button" id="files" class="list-group-item list-group-item-action dropdown-toggle"
+                <button disabled type="button" id="files" class="list-group-item list-group-item-action dropdown-toggle"
                         data-bs-toggle="dropdown" aria-expanded="false" onmouseover="activeNav(this)"
                         onmouseout="normalNav(this)">
                     📁 Files
@@ -70,7 +72,7 @@
                            href="{% url 'upload_file' %}">Add new file</a></li>
                 </ul>
             </div>
-            {% include 'inc/_notification.html' %}
+        {% include 'inc/_notification.html' %}
         </div>
 
 
@@ -97,7 +99,7 @@
 <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
 </body>
 <footer class="text-center text-lg-start bg-light text-muted">
-    <div id="footer" class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05)">
+    <div id="footer" class="text-center p-4">
         © 2022 Copyright:
         <a class="text-reset fw-bold" href="#">Team2-Helper</a>
     </div>

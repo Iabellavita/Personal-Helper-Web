@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'files.apps.FilesConfig',
     'contacts.apps.ContactsConfig',
     'news.apps.NewsConfig',
+    'notes.apps.NotesConfig',
     'captcha',
 ]
 

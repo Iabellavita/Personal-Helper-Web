@@ -14,6 +14,20 @@ function activeNav(x) {
   x.className = 'list-group-item list-group-item-action dropdown-toggle active';
 }
 
+function rangeFunc(newVal){
+     if(newVal === '0'){
+          document.body.style.backgroundColor = 'black';
+          // document.getElementById('navbar').style.backgroundColor = 'black';
+     }else if (newVal === '5'){
+          document.body.style.backgroundColor = 'gray';
+     }else if (newVal === '10'){
+          document.body.style.backgroundColor = 'darkgray';
+     }else{
+          document.body.style.backgroundColor = 'white';
+     }
+}
+
+
 $(document).ready(function(){
     $(".dropright").hover(function(){
         var dropdownMenu = $(this).children(".dropdown-menu");

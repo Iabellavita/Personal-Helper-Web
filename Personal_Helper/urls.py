@@ -25,6 +25,7 @@ urlpatterns = [
                   path('', include('contacts.urls')),
                   path('', include('news.urls')),
                   path('captcha/', include('captcha.urls')),
+                  path('', include('notes.urls')),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = "contacts.views.page_not_found_view"

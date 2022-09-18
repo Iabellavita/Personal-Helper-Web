@@ -11,38 +11,18 @@ Edit contact - {{ block.super }}
     {% csrf_token %}
 
     <div class="mb-3">
-        <label class="form-label">Contact name</label>
+        <label class="form-label">Note name:<span style="color: red">*</span></label>
         {{form.name}}
     </div>
 
     <div class="mb-3">
-        <label class="form-label">Address</label>
-        {{form.address}}
+        <label class="form-label">Description:</label>
+        {{form.text}}
     </div>
 
     <div class="mb-3">
-        <label class="form-label">Birthday</label>
-        {{form.birthday}}
-    </div>
-
-    <div class="mb-3">
-        <label class="form-label">Phone<span style="color: red">*</span></label>
-        {{form.phone}}
-    </div>
-
-    <div class="mb-3">
-        <label class="form-label">Phone</label>
-        {{form.phone_one}}
-    </div>
-
-    <div class="mb-3">
-        <label class="form-label">E-mail</label>
-        {{form.email}}
-    </div>
-
-    <div class="mb-3">
-        <label class="form-label">E-mail</label>
-        {{form.email_one}}
+        <label class="form-label">Select tags:</label>
+        {{form.tags}} 
     </div>
 
     <button type="submit" class="btn btn-primary btn-block mt-3"><i class="fa fa-folder"></i> SAVE</button>
