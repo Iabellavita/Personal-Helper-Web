@@ -31,6 +31,8 @@ Files - {{ block.super }}
 </div>
 <div data-bs-spy="scroll" style="overflow: scroll;height: 550px" data-bs-root-margin="0px 0px -10%"
      data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="1">
+    <form id="contactForm" class="container-fluid" action="{% url 'files' %}" method="post">
+        {% csrf_token %}
     <ul class="nav nav-pills nav-fill justify-content-center">
         <li class="nav-item">
             <a class="mr-1 nav-link active" href="{% url 'image_files' %}">Images</a>
@@ -50,7 +52,7 @@ Files - {{ block.super }}
                 <div class="media">
                     <div class="media-body">
                         <div class="form-check">
-                            <input class="form-check-input mt-3 " type="checkbox" name="contact" value="{{contact.pk}}"
+                            <input class="form-check-input mt-3 " type="checkbox" name="file" value="{{file.pk}}"
                                    id="flexCheckIndeterminate">
                             <a class="nav-link" href="/media/{{ file.uploadfile }}" class="card-title">{{ file.title }}</a>
                         </div>
@@ -67,7 +69,9 @@ Files - {{ block.super }}
             </div>
         </div>
         {% endfor %}
-    </div>
+    </div></form>
+
+
 </div>
 
 <div class="d-grid d-md-flex justify-content-md-end mb-2">
