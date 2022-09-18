@@ -24,8 +24,7 @@ Contact Book - {{ block.super }}
             <input class="form-control" type="text" name="s" placeholder="username, phone, email">
             <input type="submit" hidden>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button class="btn btn-secondary" type="submit" data-bs-toggle="button"><i class="fa fa-bars"></i>
-                </button>
+                <a class="navbar-brand ml-3" href="{% url 'contact_list' %}"><i class="fa fa-bars"></i></a>
             </div>
         </div>
     </form>
