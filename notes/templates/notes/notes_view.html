@@ -45,9 +45,11 @@ Notes Book - {{ block.super }}
                                    id="flexCheckIndeterminate">
                             <a style="color: black" href="{{ note.get_absolute_url }}"><h5 class="mb-1">
                                 {{note.name}}</h5></a>
+                            <small>{{note.text|truncatewords:17}}</small>
                         </div>
                         <div>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            <a class="navbar-brand ml-3" href="{{ note.get_absolute_url }}">✏️</a>
+                            <button type="button" class="btn btn-dark" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal{{note.id}}">
                                 Read more
                             </button>

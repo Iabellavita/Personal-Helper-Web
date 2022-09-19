@@ -53,6 +53,15 @@ $(function() {
         }
     });
 });
+
+function sizeValidation() {
+    var uploadField =  document.getElementById('validatedCustomFile');
+    if(uploadField.files[0].size > 5242980){
+       alert("File is too big! max size 5 MB");
+       uploadField.value = "";
+    }
+}
+
 function func() {
     document.getElementById('b-delete').value = 'delete';
 }

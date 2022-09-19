@@ -49,9 +49,10 @@ Contact Book - {{ block.super }}
                     </div>
                     <small>{{contact.birthday|timesince}}</small>
                     <div>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        <a class="btn btn-light ml-3" href="{{ contact.get_absolute_url }}">✏️</a>
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal{{contact.id}}">
-                            <i class="fa fa-info-circle"></i>
+                            📑
                         </button>
                     </div>
                 </div>
