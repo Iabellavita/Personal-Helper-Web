@@ -28,6 +28,7 @@ SignIN - {{ block.super }}
                 {% csrf_token %}
                 {{ form.as_p }}
                 <button class="btn btn-primary mb-3">Login</button>
+            <p>First here? <a href="{% url 'register' %}">Registration</a></p>
             </div>
         </div>
     </div>
