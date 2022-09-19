@@ -16,6 +16,8 @@ Profile - {{ block.super }}
 {% endif %}
 {% endfor %}
 {% endif %}
+    <div class="scrollspy-example bg-light p-3 rounded-2">
+    <div class="row">
 <form action="" method="post">
     {% csrf_token %}
 
@@ -32,22 +34,27 @@ Profile - {{ block.super }}
     <button type="submit" class="btn btn-primary btn-block mt-3 mb-2"><i class="fa fa-folder"></i> SAVE</button>
 </form>
 
-{#    <form action="" method="post" class="mt-3">#}
-{#    {% csrf_token %}#}
-{##}
-{##}
-{#    <div class="mb-3">#}
-{#        <label class="form-label">New password</label>#}
-{#        {{form.password1}}#}
-{#    </div>#}
-{##}
-{#    <div class="mb-3">#}
-{#        <label class="form-label">Confirm password</label>#}
-{#        {{form.password2}}#}
-{#    </div>#}
-{##}
-{#    <button type="submit" class="btn btn-primary btn-block mt-3"><i class="fa fa-folder"></i> SAVE NEW PASSWORD</button>#}
-{#</form>#}
+    <form action="" method="post" class="mt-3">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label class="form-label">Old password</label>
+        {{password_from.old_password}}
+    </div>
 
+    <div class="mb-3">
+        <label class="form-label">New password</label>
+        {{password_from.new_password1}}
+    </div>
+
+        <div class="mb-3">
+        <label class="form-label">Confirm new password</label>
+        {{password_from.new_password2}}
+
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block mt-3 mb-3"><i class="fa fa-folder"></i> SAVE NEW PASSWORD</button>
+</form>
+</div>
+</div>
 <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
 {% endblock %}
