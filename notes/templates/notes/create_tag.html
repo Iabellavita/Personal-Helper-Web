@@ -17,7 +17,7 @@ Create New Tag - {{ block.super }}
 {% endif %}
 {% endfor %}
 {% endif %}
-
+<div class="scrollspy-example bg-light p-3 rounded-2">
 <form action="{% url 'create_tag' %}" method="post">
     {% csrf_token %}
 
@@ -29,5 +29,6 @@ Create New Tag - {{ block.super }}
     
     <button type="submit" class="btn btn-primary btn-block mt-3">ADD TAG</button>
 </form>
+    </div>
 <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
 {% endblock %}

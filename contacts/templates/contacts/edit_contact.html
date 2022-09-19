@@ -6,7 +6,7 @@ Edit contact - {{ block.super }}
 {% endblock %}
 
 {% block content %}
-
+<div class="scrollspy-example bg-light p-3 rounded-2">
 <form action="" method="post">
     {% csrf_token %}
 
@@ -50,6 +50,6 @@ Edit contact - {{ block.super }}
     <button type="submit" class="btn btn-danger btn-block mt-3" onclick="func()"><i class="fa fa-trash"></i> DELETE
     </button>
 </form>
-
+</div>
 <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
 {% endblock %}

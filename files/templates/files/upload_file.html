@@ -17,13 +17,13 @@ File Upload - {{ block.super }}
 {% endif %}
 {% endfor %}
 {% endif %}
-
+<div class="scrollspy-example bg-light p-3 rounded-2">
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
 
     <div class="mb-3">
         <label class="form-label">Title:</label>
-        <input class="form-control" type="text" name="title" required>
+        <input class="form-control" type="text" id="title" name="title" required>
     </div>
 
     <div class="custom-file mb-3">
@@ -33,6 +33,6 @@ File Upload - {{ block.super }}
 
     <button class="btn btn-primary btn-block mt-3">Upload</button>
 </form>
-
+</div>
 <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
 {% endblock %}
