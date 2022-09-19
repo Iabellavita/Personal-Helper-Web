@@ -27,8 +27,8 @@ SignIN - {{ block.super }}
                 <h2 class="text-center mt-2">Login</h2>
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button class="btn btn-primary mb-3">Login</button>
-            <p>First here? <a href="{% url 'register' %}">Registration</a></p>
+                <button class="btn btn-dark mb-3">Login</button>
+            <p style="text-align: center">First here? <a href="{% url 'register' %}">Registration</a></p>
             </div>
         </div>
     </div>

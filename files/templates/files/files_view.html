@@ -35,13 +35,13 @@ Files - {{ block.super }}
         {% csrf_token %}
     <ul class="nav nav-pills nav-fill justify-content-center">
         <li class="nav-item">
-            <a class="mr-1 nav-link active" href="{% url 'image_files' %}">Images</a>
+            <a class="mr-1 nav-link active btn-dark" href="{% url 'image_files' %}">Images</a>
         </li>
         <li class="nav-item">
-            <a class="mr-1 nav-link active ml-1" href="{% url 'pdf_files' %}">PDF</a>
+            <a class="mr-1 nav-link active ml-1 btn-dark" href="{% url 'pdf_files' %}">PDF</a>
         </li>
         <li class="nav-item">
-            <a class="ml-2 nav-link active" href="{% url 'docs_files' %}">Docs</a>
+            <a class="ml-2 nav-link active btn-dark" href="{% url 'docs_files' %}">Docs</a>
         </li>
     </ul>
     {% if files_data %}
@@ -58,9 +58,9 @@ Files - {{ block.super }}
                         </div>
                     </div>
                     <nav class="nav nav-pills flex-column flex-sm-row">
-                        <a class="mr-3 flex-sm-fill text-sm-center nav-link active"
+                        <a class="mr-3 flex-sm-fill text-sm-center nav-link active btn-dark"
                            href="{% url 'download_file' file.pk %}">Download</a>
-                        <a class="flex-sm-fill text-sm-center nav-link active" href="{% url 'delete_file' file.pk%}">Delete</a>
+                        <a class="flex-sm-fill text-sm-center nav-link active btn-danger" href="{% url 'delete_file' file.pk%}">Delete</a>
                     </nav>
                 </div>
             </div>

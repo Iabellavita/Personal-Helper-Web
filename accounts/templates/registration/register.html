@@ -27,7 +27,8 @@ SignUP - {{ block.super }}
             <h2 class="text-center mt-2">Registration</h2>
             {% csrf_token %}
             {{ form.as_p }}
-            <button class="btn btn-primary mb-3">Registration</button>
+            <button class="btn btn-dark mb-3">Registration</button>
+        <p style="text-align: center">If you have account <a href="{% url 'login' %}">Sign up</a> here.</p>
         </div>
     </div>
 </form>
