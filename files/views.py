@@ -25,7 +25,10 @@ class FilesByUser(ListView):
     def post(self, request, *args, **kwargs):
         context = self.get_context_data(**kwargs)
         file_list = self.request.POST.getlist('file')
-        Files.objects.filter(pk__in=file_list).delete()
+        files = Files.objects.filter(pk__in=file_list)
+        for file in files:
+            os.remove(f'./media/{file.uploadfile}')
+        files.delete()
         return render(request, self.template_name, context)
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -45,20 +48,16 @@ def upload_file(request):
             form.save()
             messages.success(request, 'Success added')
             return redirect('upload_file')
+        else:
+            messages.error(request, 'Error valid from')
 
     else:
         form = UploadFileForm()
-        return render(request, "files/upload_file.html", {"form": form})
+    return render(request, "files/upload_file.html", {"form": form})
 
 
 @login_required(login_url='home')
 def delete_file(request, file_id):
-    file = get_object_or_404(Files, pk=file_id)
-
-    if request.method == 'POST':
-        if request.POST.get('b-delete') == 'delete':
-            file.delete()
-
     file = get_object_or_404(Files, pk=file_id)
     file.delete()
     os.remove(f'./media/{file.uploadfile}')

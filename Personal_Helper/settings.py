@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-3fivxq+4h7q#)%3wz$m2znp3wi2*t(v7!z^gy6w8lm1sxz1cp*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True # Use False for show 404 page
+DEBUG = True  # Use False for show 404 page
 
-ALLOWED_HOSTS = [] # Use empty list for show 404 page - ['127.0.0.1']
+ALLOWED_HOSTS = []  # Use empty list for show 404 page - ['127.0.0.1']
 
 # Application definition
 
@@ -83,6 +83,14 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'personal_helper',
+    #     'USER': 'admin',
+    #     'PASSWORD': 'P@SSw0rd',
+    #     'HOST': 'localhost',
+    #     'PORT': 5432
+    # }
 }
 
 # Password validation

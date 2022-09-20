@@ -10,6 +10,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth import update_session_auth_hash
+import os
 
 
 # from django.core.mail import send_mail
@@ -74,7 +75,7 @@ def user_profile(request, pk):
                     return render(request, "registration/profile.html", {'form': form, 'password_from': pasw})
             else:
                 form = UpdateUserForm(request.POST or None,
-                                  initial={'email': instance.email, 'username': instance.username})
+                                      initial={'email': instance.email, 'username': instance.username})
                 if form.is_valid():
                     user_card = User.objects.filter(username=request.POST['username']).first()
                     if user_card is None or user_card.pk == request.user.id:
@@ -88,27 +89,9 @@ def user_profile(request, pk):
                             u.username = request.POST['username']
                             u.email = request.POST['email']
                             u.save()
+
                             messages.success(request, 'Success update')
                     else:
                         messages.error(request, 'Profile name already exist')
                 return render(request, "registration/profile.html", {'form': form, 'password_from': pasw})
     return redirect('contact_list')
-
-# def send_user_mail(request):
-#     mail = send_mail('subject, 'content', 'email_sender', ['email_recipient'], fail_silently=True)
-#
-#     if mail:
-#         messages.success(request, 'We sent')
-#         return redirect('files')
-#     else:
-#         messages.error(request, 'No valid email!')
-
-# class SignUpView(generic.CreateView):
-#     form_class = RegisterUserForm
-#     success_url = reverse_lazy('login')
-#     template_name = 'registration/register.html'
-#
-#     def get_context_data(self, *, object_list=None, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['title'] = 'SignUp'
-#         return context
