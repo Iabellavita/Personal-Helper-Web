@@ -12,7 +12,12 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os.path
+import environ
 
+env = environ.Env(
+    DEBUG=(bool, False)
+)
+environ.Env.read_env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,12 +25,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-3fivxq+4h7q#)%3wz$m2znp3wi2*t(v7!z^gy6w8lm1sxz1cp*'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True  # Use False for show 404 page
+DEBUG = env('DEBUG')  # Use False for show 404 page
 
-ALLOWED_HOSTS = []  # Use empty list for show 404 page - ['127.0.0.1']
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')  # Use empty list for show 404 page - ['127.0.0.1']
 
 # Application definition
 
@@ -79,18 +84,7 @@ WSGI_APPLICATION = 'Personal_Helper.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'personal_helper',
-    #     'USER': 'admin',
-    #     'PASSWORD': 'P@SSw0rd',
-    #     'HOST': 'localhost',
-    #     'PORT': 5432
-    # }
+    'default': env.db()
 }
 
 # Password validation
