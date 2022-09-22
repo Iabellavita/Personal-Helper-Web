@@ -33,7 +33,7 @@ The second with docker:
 - Copy the repository to your computer with command <code>git clone https://github.com/Iabellavita/Personal-Helper-Web</code>,
 - Change directory to personal-helper-web,
 - Open terminal in directory with Personal Helper and enter this command <code>docker-compose up --build</code>,
-- If you already have a built project, enter <code>docker-compose</code> up to run it.
+- If you already have a built project, enter <code>docker-compose up</code> to run it.
 
 
 ------------
