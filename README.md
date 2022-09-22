@@ -23,6 +23,9 @@ The first with python:
 - Install git,
 - Copy the repository to your computer with command <code>git clone https://github.com/Iabellavita/Personal-Helper-Web</code> ,
 - Change directory to personal-helper-web,
+- Install Docker and execute command setup PosrgreSQL in conteiner with help command: <br>
+<code>docker run --name <cont_name> -p 5432:5432 -e POSTGRES_USER=<user_db> -e POSTGRES_PASSWORD=<pass_db> -e POSTGRES_DB=<db_name_1> -d postgres</code>
+- Create .env file and fill values (DATABASE_URL=<code>postgres://<user_db>:<pass_db>@localhost:5432/<db_name></code>, DEBUG=True, SECRET_KEY=, ALLOWED_HOSTS=)
 - Install requirements.txt with command <code>pip install -r requirements.txt</code>,
 - Start the server with <code>python manage.py runserver</code>,
 - Then go to 127.0.0.0:8000 and enjoy the functions of a personal assistant. 😊
